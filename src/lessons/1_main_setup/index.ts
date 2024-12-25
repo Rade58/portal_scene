@@ -2,7 +2,8 @@ import * as THREE from "three";
 
 import GUI from "lil-gui";
 import { OrbitControls } from "three/examples/jsm/Addons.js";
-import { GLTFLoader, RGBELoader } from "three/examples/jsm/Addons.js";
+import { GLTFLoader } from "three/examples/jsm/Addons.js";
+import { DRACOLoader } from "three/examples/jsm/Addons.js";
 
 // ------------ gui -------------------
 /**
@@ -49,11 +50,13 @@ if (canvas) {
    * @description loaders
    */
 
+  const textureLoader = new THREE.TextureLoader();
+
+  const dracoLoader = new DRACOLoader();
+  dracoLoader.setDecoderPath("/draco/");
+
   const gltfLoader = new GLTFLoader();
-
-  const rgbeLoader = new RGBELoader();
-
-  // const textureLoader = new THREE.TextureLoader();
+  gltfLoader.setDRACOLoader(dracoLoader);
 
   // -------------------------------------------------------------------
   // -------------------------------------------------------------------
