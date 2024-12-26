@@ -75,7 +75,7 @@ if (canvas) {
     0.1,
     100
   );
-  camera.position.set(4, 1, -4);
+  camera.position.set(4, 1, 4);
   scene.add(camera);
 
   //------------------------------------------------
@@ -89,7 +89,7 @@ if (canvas) {
   // gltfLoader.load("/models/head_lee_perry_smith/scene.gltf", (gltf) => {
   // our portal model
   gltfLoader.load(
-    "/models/portal/portal.glb",
+    "/models/portal/scene.glb",
     (gltf) => {
       console.log("model loaded");
 
