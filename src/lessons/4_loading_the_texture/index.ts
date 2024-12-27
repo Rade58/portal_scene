@@ -5,6 +5,8 @@ import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { DRACOLoader } from "three/examples/jsm/Addons.js";
 
+// using texture loader to loade baked.jpg
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
@@ -84,6 +86,27 @@ if (canvas) {
   //------------------------------------------------
   // ---------- model ______________________________
 
+  // textures
+  const bakedTexture = textureLoader.load(
+    "/models/portal/baked.jpg",
+    (t) => {
+      console.log({ t });
+    },
+    (p) => {
+      console.log("texture loading progress:", p.loaded / p.total);
+    },
+    (e) => {
+      console.log("error loading texture:", e);
+    }
+  );
+
+  // materials
+
+  // ---- adding different material
+  const bakedMaterial = new THREE.MeshBasicMaterial({
+    color: 0xff0000, // red
+  });
+
   // "lee perry-smith head"
   // gltfLoader.load("/models/FlightHelmet/glTF/FlightHelmet.gltf", (gltf) => {
   // gltfLoader.load("/models/head_lee_perry_smith/scene.gltf", (gltf) => {
@@ -93,7 +116,7 @@ if (canvas) {
     (gltf) => {
       console.log("model loaded");
 
-      console.log({ gltf });
+      // console.log({ gltf });
 
       // gltf.scene.position.y = -4;
 
@@ -104,6 +127,12 @@ if (canvas) {
         })
         .min(0)
         .max(2);
+
+      gltf.scene.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material = bakedMaterial;
+        }
+      });
 
       scene.add(gltf.scene);
     },
@@ -138,7 +167,7 @@ if (canvas) {
   /**
    * @description Directional light
    */
-  const directionalLight = new THREE.DirectionalLight("#ffffff", 3);
+  /*  const directionalLight = new THREE.DirectionalLight("#ffffff", 3);
   directionalLight.position.set(-4, 6.5, 2.5);
   scene.add(directionalLight);
 
@@ -150,7 +179,7 @@ if (canvas) {
 
   directionalLight.target.position.set(0, 2, 0);
 
-  scene.add(directionalLightCameraHelper);
+  scene.add(directionalLightCameraHelper); */
 
   // -------------------------------------------------------------
   // -------------------------------------------------------------
