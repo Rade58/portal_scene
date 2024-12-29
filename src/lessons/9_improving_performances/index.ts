@@ -88,6 +88,9 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 // but I didn't do that sice we have materials with different colors
 // for them, and as you remeber they are not covered by the texture
 
+// last change we can make is that we do not traverse the scene at
+// all
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
@@ -222,20 +225,21 @@ if (canvas) {
         .min(0)
         .max(2);
 
-      gltf.scene.traverse((child) => {
+      // we do not need this anymore
+      /* gltf.scene.traverse((child) => {
         if (child instanceof THREE.Mesh) {
-          // instead of this
-          // console.log({ name: child.name });
-          // if (child.name === "LampGlassOne" || child.name === "LampGlassTwo") {
-          // child.material = poleLampMaterial;
-          // } else if (child.name === "PortalCircle") {
-          // child.material = portalMaterial;
-          // } else {
+          
           child.material = bakedMaterial;
-          // }
+        
+        }
+      }); */
+      // we ca ndo this (ans we will add ,aterial bellow)
+      const bakedObject = gltf.scene.children.find((child) => {
+        if (child instanceof THREE.Mesh) {
+          return child.name === "baked";
         }
       });
-      // we are doing this
+      //
       const poleLampGlassMeshOne = gltf.scene.children.find((child) => {
         if (child instanceof THREE.Mesh) {
           return child.name === "LampGlassOne";
@@ -251,6 +255,10 @@ if (canvas) {
           return child.name === "PortalCircle";
         }
       });
+      // andd we do this
+      if (bakedObject instanceof THREE.Mesh)
+        bakedObject.material = bakedMaterial;
+      // ------
 
       if (poleLampGlassMeshOne instanceof THREE.Mesh)
         poleLampGlassMeshOne.material = poleLampMaterial;
