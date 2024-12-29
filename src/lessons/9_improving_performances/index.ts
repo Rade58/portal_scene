@@ -74,6 +74,13 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 
 // and use newly exported file as our static/models/portal/scene.glb
 
+// start your dev server, and after you see the model
+// you can run Spectator.js extension again
+
+// you will see that this time you only have onlt
+// 4 `drawElements` calls, for two lamps, for portal circle
+// and for your merged object
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
