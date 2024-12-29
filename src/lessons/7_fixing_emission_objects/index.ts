@@ -165,10 +165,10 @@ if (canvas) {
           // we added this if statement
           // based on the name of the mesh
 
-          console.log({ name: child.name });
-          if (child.name === "Lamp_Glass" || child.name === "Lamp_Glass002") {
+          // console.log({ name: child.name });
+          if (child.name === "LampGlassOne" || child.name === "LampGlassTwo") {
             child.material = poleLampMaterial;
-          } else if (child.name === "Circle") {
+          } else if (child.name === "PortalCircle") {
             child.material = portalMaterial;
           } else {
             child.material = bakedMaterial;
