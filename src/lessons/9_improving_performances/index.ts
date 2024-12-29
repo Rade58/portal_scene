@@ -58,6 +58,11 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 
 // - remove the materials (not mandatory)
 //    I did it (minus sign in materials tab)
+// but why is this not mandatory?
+// becausee when we are exporting, maybe you remebered that
+// we are not exporting materials at all
+// you will see that when you next time export the model
+// you will see what is uncheked, and we did uncheck materials
 
 // now in render mode I see that object have uniform color
 
