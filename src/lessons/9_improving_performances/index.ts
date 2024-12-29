@@ -63,9 +63,11 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 
 // we don't need materials since we are using texture
 
-// you can now export (we only selected the "bakded" object in merged collection)
+// - you can now export
+//  selected the "bakded" object in merged collection)
+// and select objects from "emission" collection
 
-// and use that as static/models/portal/scene.glb
+// and use newly exported file as our static/models/portal/scene.glb
 
 // ------------ gui -------------------
 /**
