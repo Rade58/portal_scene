@@ -21,3 +21,9 @@ node_modules/three/examples/jsm/libs/draco
 ```
 
 to your static folder
+
+# Spector.js
+
+[repo](https://github.com/BabylonJS/Spector.js/)
+
+[chrome extension](https://chromewebstore.google.com/detail/spectorjs/denbgaamihkadbghdceggmchnflmhpmk)

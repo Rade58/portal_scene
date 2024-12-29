@@ -16,6 +16,18 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 // and we also add it as a dependency in our project
 // https://github.com/BabylonJS/Spector.js/
 
+// we may not need this since we are using chrome extension
+// this would befallback if extension is not available
+
+// ts-expect-error no types
+// import * as SPECTOR from "spectorjs";
+
+// console.log({ SPECTOR });
+
+// const spector = new SPECTOR.Spector();
+// console.log({ spector });
+// spector.displayUI()
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
