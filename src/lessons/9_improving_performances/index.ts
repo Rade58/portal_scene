@@ -84,6 +84,10 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 // beforem we had 206 comands executed, but now you will see
 // that we only have 16 comands (you can see this in spectors commands tab)
 
+// We could have also merged the lamps and portal circle
+// but I didn't do that sice we have materials with different colors
+// for them, and as you remeber they are not covered by the texture
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
