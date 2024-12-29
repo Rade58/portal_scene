@@ -28,6 +28,45 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 // console.log({ spector });
 // spector.displayUI()
 
+// after checking the monitorings
+// we see that our model is constructed of too many geometries
+// we can merge all the baked objects into one geometry
+// that will be drawn in one call
+
+// for example all planks and all trunks can be merged into one geometry
+// but we can do more
+
+// - first we will open blender
+// - we will make all emission collection as un-selectable
+// - we will create empty collection called "merged"
+
+// - select all the object (except the emission objects
+// and except camera and light)
+
+// - duplicate them
+// - put them into the "merged" collection
+// - merge them with CTRL + J
+// - rename the object to "baked" (I'm taking about single object in `merged` collection you created)
+
+// - decativate all other collectons except "merged" (just unchecked the eye icon)
+// - also you don't need to deactivate the "emission" collection
+//   since we want to go into render mode to see how scene will look
+// - scene looks like it should be, liek it looked before
+
+// - but this is bad since we have bunch of materials
+//   apply the material to the single object
+
+// - remove the materials (not mandatory)
+//    I did it (minus sign in materials tab)
+
+// now in render mode I see that object have uniform color
+
+// we don't need materials since we are using texture
+
+// you can now export (we only selected the "bakded" object in merged collection)
+
+// and use that as static/models/portal/scene.glb
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
