@@ -201,6 +201,7 @@ if (canvas) {
   });
   const portalMaterial = new THREE.MeshBasicMaterial({
     color: 0xf8eff0,
+    side: THREE.DoubleSide,
   });
 
   // "lee perry-smith head"
