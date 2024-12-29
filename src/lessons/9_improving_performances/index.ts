@@ -81,6 +81,9 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 // 4 `drawElements` calls, for two lamps, for portal circle
 // and for your merged object
 
+// beforem we had 206 comands executed, but now you will see
+// that we only have 16 comands (you can see this in spectors commands tab)
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
