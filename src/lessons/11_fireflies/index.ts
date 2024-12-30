@@ -7,7 +7,9 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 
 // fireflies
 // we are going to use particles
-// look for firefliesGeometry to see what I did
+// look for firefliesGeometry to see what I am talking about
+// this will be BufferGeometry instance
+// and we will use PointsMaterial (in next lesson we will use ShaderMaterial)
 
 // ------------ gui -------------------
 /**
@@ -89,7 +91,8 @@ if (canvas) {
   const bakedTexture = textureLoader.load(
     "/models/portal/baked.jpg",
     (t) => {
-      console.log({ t });
+      // console.log({ t });
+      console.log("texture loaded");
     },
     (p) => {
       console.log("texture loading progress:", p.loaded / p.total);
@@ -197,6 +200,40 @@ if (canvas) {
     }
   );
 
+  // ----------------- Particles (fireflies) ---------------------
+  // -------------------------------------------------------------
+  //
+
+  const firefliesGeometry = new THREE.BufferGeometry();
+  const firefliesCount = 30;
+  const positionArray = new Float32Array(firefliesCount * 3);
+
+  for (let i = 0; i < firefliesCount; i++) {
+    positionArray[i * 3 + 0] = (Math.random() - 0.5) * 4;
+    // positionArray[i * 3 + 0] = Math.random() * 4;
+    // positionArray[i * 3 + 1] = Math.random() * 2;
+    positionArray[i * 3 + 1] = Math.random() * 1.5;
+    // positionArray[i * 3 + 1] = Math.random() * 4;
+    positionArray[i * 3 + 2] = (Math.random() - 0.5) * 4;
+    // positionArray[i * 3 + 2] = Math.random() * 4;
+  }
+
+  // console.log({ positionArray });
+
+  firefliesGeometry.setAttribute(
+    "position",
+    new THREE.BufferAttribute(positionArray, 3)
+  );
+
+  const firefliesMaterial = new THREE.PointsMaterial({
+    size: 0.1,
+    sizeAttenuation: true,
+    // color: 0xffff00,
+  });
+
+  const fireflies = new THREE.Points(firefliesGeometry, firefliesMaterial);
+
+  scene.add(fireflies);
   // -------------------------------------------------------------
   // -------------------------------------------------------------
   // -------------------------------------------------------------
