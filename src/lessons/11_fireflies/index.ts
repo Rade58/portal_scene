@@ -5,91 +5,9 @@ import { OrbitControls } from "three/examples/jsm/Addons.js";
 import { GLTFLoader } from "three/examples/jsm/Addons.js";
 import { DRACOLoader } from "three/examples/jsm/Addons.js";
 
-// Improving performances
-
-// We did some performance mistakes in the previous lessons
-// We will fix them in this lesson
-
-// monitoring
-// We will use Spector.js to monitor the performance of our application
-// there is extension for chrome and firefox
-// and we also add it as a dependency in our project
-// https://github.com/BabylonJS/Spector.js/
-
-// we may not need this since we are using chrome extension
-// this would befallback if extension is not available
-
-// ts-expect-error no types
-// import * as SPECTOR from "spectorjs";
-
-// console.log({ SPECTOR });
-
-// const spector = new SPECTOR.Spector();
-// console.log({ spector });
-// spector.displayUI()
-
-// after checking the monitorings
-// we see that our model is constructed of too many geometries
-// we can merge all the baked objects into one geometry
-// that will be drawn in one call
-
-// for example all planks and all trunks can be merged into one geometry
-// but we can do more
-
-// - first we will open blender
-// - we will make all emission collection as un-selectable
-// - we will create empty collection called "merged"
-
-// - select all the object (except the emission objects
-// and except camera and light)
-
-// - duplicate them
-// - put them into the "merged" collection
-// - merge them with CTRL + J
-// - rename the object to "baked" (I'm taking about single object in `merged` collection you created)
-
-// - decativate all other collectons except "merged" (just unchecked the eye icon)
-// - also you don't need to deactivate the "emission" collection
-//   since we want to go into render mode to see how scene will look
-// - scene looks like it should be, liek it looked before
-
-// - but this is bad since we have bunch of materials
-//   apply the material to the single object
-
-// - remove the materials (not mandatory)
-//    I did it (minus sign in materials tab)
-// but why is this not mandatory?
-// becausee when we are exporting, maybe you remebered that
-// we are not exporting materials at all
-// you will see that when you next time export the model
-// you will see what is uncheked, and we did uncheck materials
-
-// now in render mode I see that object have uniform color
-
-// we don't need materials since we are using texture
-
-// - you can now export
-//  selected the "bakded" object in merged collection)
-// and select objects from "emission" collection
-
-// and use newly exported file as our static/models/portal/scene.glb
-
-// start your dev server, and after you see the model
-// you can run Spectator.js extension again
-
-// you will see that this time you only have onlt
-// 4 `drawElements` calls, for two lamps, for portal circle
-// and for your merged object
-
-// beforem we had 206 comands executed, but now you will see
-// that we only have 16 comands (you can see this in spectors commands tab)
-
-// We could have also merged the lamps and portal circle
-// but I didn't do that sice we have materials with different colors
-// for them, and as you remeber they are not covered by the texture
-
-// last change we can make is that we do not traverse the scene at
-// all
+// fireflies
+// we are going to use particles
+// look for firefliesGeometry to see what I did
 
 // ------------ gui -------------------
 /**
@@ -107,6 +25,10 @@ const gui = new GUI({
 const parameters = {
   //
   "rotate model": 0,
+  // clearColor: "#ff0000",
+  // clearColor: "#473333",
+  // clearColor: "#483333",
+  clearColor: "#271b1b",
 };
 // gui.hide()
 // ----------------------------------
@@ -337,6 +259,15 @@ if (canvas) {
 
   renderer.setSize(sizes.width, sizes.height);
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+  gui.addColor(parameters, "clearColor").onChange((color: string) => {
+    renderer.setClearColor(
+      new THREE.Color(/* parameters.clearColor */ color),
+      1
+    );
+  });
+  renderer.setClearColor(new THREE.Color(parameters.clearColor), 1);
+
   // maybe this should be only inside       tick
 
   // ---------------------------------------------------------
