@@ -27,3 +27,7 @@ to your static folder
 [repo](https://github.com/BabylonJS/Spector.js/)
 
 [chrome extension](https://chromewebstore.google.com/detail/spectorjs/denbgaamihkadbghdceggmchnflmhpmk)
+
+# Shaders setup
+
+We are using `vite-plugin-glslify`
