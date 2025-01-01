@@ -8,53 +8,17 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 import firefliesVertexShader from "./vertex.glsl";
 import firefliesFragmentShader from "./fragment.glsl";
 
-// Continuing with the color pattern
+// Blending
+//
+// making particles look more shiny
+// look for blending property on firefliesMaterial
+// We ave set THREE.AdditiveBlending
 
-// don't forget to set "transparent" to true in the material
-// as you rember, without it the alpha channel can only be 1 or 0
-// go to firefliesMaterial  to see what I set
+// particle will merge with the color behind it
 
-// we will use small value like 0.05 to divide distanceToCenter
-
-// than we will use that value as alpha
-
-// but we will substract (0.05 * 2) from alpha
-
-// that way we got something that looks like fireflies
-
-// but still it didn't look right
-// when I move the scene rectangle was too big and
-// as I rotate the scene you can see that one
-// rectangle was hiding the other
-// and it didn't look right so I lowered the size of the rectangle
-
-// Also author of the workshop used strenghth value only for aplpha
-// while other values were set to 1.0 (colors)
-
-// I set strength to be value for 3 colors and alpha
-
-// -----------------------------------------------
-
-// but at the end since I'm following the workshop
-// I changed everything to his way
-
-// I'll make changes when I finish the workshop
-
-// What is strange for me?
-
-// as I move the scene, and I'm following certain particle
-// some other particle is completely hidden by the rectangle
-// and other it can be seen through the rectangle
-
-// I would like to know why is that happening
-
-// AI told this:
-// I think that is because of the order of the particles
-// in the buffer geometry
-
-// (we fix this issue in lesson 19)
-
-// ---------------------------------------------------------
+// Additive blending is bad for performance
+// but we dont have big amount of particles so it is ok
+// we have 30 particles (look for variable firefliesCount)
 
 // ------------ gui -------------------
 /**
@@ -77,7 +41,7 @@ const parameters = {
   // clearColor: "#483333",
   clearColor: "#271b1b",
   // instead 200 we will use 100
-  size: 50,
+  size: 100,
 };
 // gui.hide()
 // ----------------------------------
@@ -255,6 +219,9 @@ if (canvas) {
   const firefliesCount = 30;
   const positionArray = new Float32Array(firefliesCount * 3);
 
+  //
+  const scaleArray = new Float32Array(firefliesCount * 1);
+
   for (let i = 0; i < firefliesCount; i++) {
     positionArray[i * 3 + 0] = (Math.random() - 0.5) * 4;
     // positionArray[i * 3 + 0] = Math.random() * 4;
@@ -263,6 +230,10 @@ if (canvas) {
     // positionArray[i * 3 + 1] = Math.random() * 4;
     positionArray[i * 3 + 2] = (Math.random() - 0.5) * 4;
     // positionArray[i * 3 + 2] = Math.random() * 4;
+
+    // scale randomness
+
+    scaleArray[i] = Math.random();
   }
 
   // console.log({ positionArray });
@@ -270,6 +241,12 @@ if (canvas) {
   firefliesGeometry.setAttribute(
     "position",
     new THREE.BufferAttribute(positionArray, 3)
+  );
+
+  // scale randomness
+  firefliesGeometry.setAttribute(
+    "aScale",
+    new THREE.BufferAttribute(scaleArray, 1)
   );
 
   const firefliesMaterial = new THREE.ShaderMaterial({
@@ -281,8 +258,10 @@ if (canvas) {
 
       uSize: { value: parameters.size },
     },
-    // we set this
+
     transparent: true,
+    // blending: THREE.AdditiveBlending,
+    blending: THREE.AdditiveBlending,
   });
 
   const fireflies = new THREE.Points(firefliesGeometry, firefliesMaterial);
