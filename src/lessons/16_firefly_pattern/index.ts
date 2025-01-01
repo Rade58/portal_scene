@@ -28,6 +28,32 @@ import firefliesFragmentShader from "./fragment.glsl";
 // rectangle was hiding the other
 // and it didn't look right so I lowered the size of the rectangle
 
+// Also author of the workshop used strenghth value only for aplpha
+// while other values were set to 1.0 (colors)
+
+// I set strength to be value for 3 colors and alpha
+
+// -----------------------------------------------
+
+// but at the end since I'm following the workshop
+// I changed everything to his way
+
+// I'll make changes when I finish the workshop
+
+// What is strange for me?
+
+// as I move the scene, and I'm following certain particle
+// some other particle is completely hidden by the rectangle
+// and other it can be seen through the rectangle
+
+// I would like to know why is that happening
+
+// AI told this:
+// I think that is because of the order of the particles
+// in the buffer geometry
+
+// ---------------------------------------------------------
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
@@ -49,7 +75,7 @@ const parameters = {
   // clearColor: "#483333",
   clearColor: "#271b1b",
   // instead 200 we will use 100
-  size: 100,
+  size: 50,
 };
 // gui.hide()
 // ----------------------------------
