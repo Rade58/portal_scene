@@ -8,18 +8,11 @@ import { DRACOLoader } from "three/examples/jsm/Addons.js";
 import firefliesVertexShader from "./vertex.glsl";
 import firefliesFragmentShader from "./fragment.glsl";
 
-// Depth write
+// floating animation
 
-// problem where one particle completly covers the other
-// we can solve this by disabling depth write (disabling drpthWrite on firefliesMaterial)
+// making the particles float up and down
 
-// we encounter this problem in lesson 16
-
-// we were alo dealing with this problem in workshop about
-// particles I think
-
-// There are more solutions to this problem
-// but we picked the most forward one
+// we will send uTime uniform to the shader
 
 // ------------ gui -------------------
 /**
@@ -257,6 +250,9 @@ if (canvas) {
       uPixelRatio: { value: Math.min(window.devicePixelRatio, 2) },
 
       uSize: { value: parameters.size },
+
+      //
+      uTime: { value: 0 },
     },
 
     transparent: true,
@@ -451,6 +447,10 @@ if (canvas) {
   function tick() {
     // for dumping to work
     orbit_controls.update();
+
+    // time
+    const elapsedTime = clock.getElapsedTime();
+    firefliesMaterial.uniforms.uTime.value = elapsedTime;
 
     renderer.render(scene, camera);
     window.requestAnimationFrame(tick);
