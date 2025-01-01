@@ -14,6 +14,20 @@ import firefliesFragmentShader from "./fragment.glsl";
 // as you rember, without it the alpha channel can only be 1 or 0
 // go to firefliesMaterial  to see what I set
 
+// we will use small value like 0.05 to divide distanceToCenter
+
+// than we will use that value as alpha
+
+// but we will substract (0.05 * 2) from alpha
+
+// that way we got something that looks like fireflies
+
+// but still it didn't look right
+// when I move the scene rectangle was too big and
+// as I rotate the scene you can see that one
+// rectangle was hiding the other
+// and it didn't look right so I lowered the size of the rectangle
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
@@ -34,7 +48,8 @@ const parameters = {
   // clearColor: "#473333",
   // clearColor: "#483333",
   clearColor: "#271b1b",
-  size: 200,
+  // instead 200 we will use 100
+  size: 100,
 };
 // gui.hide()
 // ----------------------------------

@@ -12,8 +12,10 @@ void main() {
 
   float distanceToCenter = distance(gl_PointCoord, center);
 
-  
+  float divider = 0.05;
 
-  gl_FragColor = vec4(1.0, 1.0, 1.0, distanceToCenter);
+  float strength = divider / distanceToCenter - divider * 2.0;
+
+  gl_FragColor = vec4(vec3(1.0), strength);
 
 }
