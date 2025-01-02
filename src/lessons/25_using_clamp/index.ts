@@ -11,21 +11,10 @@ import firefliesFragmentShader from "./fragment.glsl";
 import portalVertexShader from "./portal/vertex.glsl";
 import portalFragmentShader from "./portal/fragment.glsl";
 
-// adding colors to portal shader
+// adding clamp to the fragment shader
+// because after last lesson we have a problem
+// where color isn't as uniform as we want it to be
 // look into ./portal/fragment.glsl
-
-// we will add a new uniforms to the portal shader
-// uniform vec3 uColorStart;
-// uniform vec3 uColorEnd;
-// we can use color we extracted from the blender render image in figma
-// or gThumb
-
-// and in shader we are using mix function
-
-// but since maybe you don't like these colors
-// we will define so you can change them with gui
-
-// we will use .value.set(color) to set the color in gui
 
 // ------------ gui -------------------
 /**
