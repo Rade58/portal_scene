@@ -25,6 +25,8 @@ import portalFragmentShader from "./portal/fragment.glsl";
 // but since maybe you don't like these colors
 // we will define so you can change them with gui
 
+// we will use .value.set(color) to set the color in gui
+
 // ------------ gui -------------------
 /**
  * @description Debug UI - lil-ui
