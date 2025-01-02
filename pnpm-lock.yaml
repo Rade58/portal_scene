@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      glsl-noise:
+        specifier: ^0.0.0
+        version: 0.0.0
       lil-gui:
         specifier: ^0.20.0
         version: 0.20.0
@@ -380,6 +383,9 @@ packages:
 
   glsl-inject-defines@1.0.3:
     resolution: {integrity: sha512-W49jIhuDtF6w+7wCMcClk27a2hq8znvHtlGnrYkSWEr8tHe9eA2dcnohlcAmxLYBSpSSdzOkRdyPTrx9fw49+A==}
+
+  glsl-noise@0.0.0:
+    resolution: {integrity: sha512-b/ZCF6amfAUb7dJM/MxRs7AetQEahYzJ8PtgfrmEdtw6uyGOr+ZSGtgjFm6mfsBkxJ4d2W7kg+Nlqzqvn3Bc0w==}
 
   glsl-resolve@0.0.1:
     resolution: {integrity: sha512-xxFNsfnhZTK9NBhzJjSBGX6IOqYpvBHxxmo+4vapiljyGNCY0Bekzn0firQkQrazK59c1hYxMDxYS8MDlhw4gA==}
@@ -886,6 +892,8 @@ snapshots:
       glsl-token-inject-block: 1.1.0
       glsl-token-string: 1.0.1
       glsl-tokenizer: 2.1.5
+
+  glsl-noise@0.0.0: {}
 
   glsl-resolve@0.0.1:
     dependencies:
